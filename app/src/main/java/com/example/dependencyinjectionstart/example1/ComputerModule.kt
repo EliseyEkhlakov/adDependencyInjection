@@ -12,35 +12,36 @@ class ComputerModule {
     }
 
     @Provides
-    fun provideKeyboard(): Keyboard {
-        return Keyboard()
-    }
-
-    @Provides
-    fun provideMouse(): Mouse {
-        return Mouse()
-    }
-
-    @Provides
-    fun provideStorage(): Storage {
+    fun providesStorage(): Storage{
         return Storage()
     }
 
     @Provides
-    fun provideMemory(): Memory {
+    fun providesMemory(): Memory{
         return Memory()
     }
 
     @Provides
-    fun provideProcessor(): Processor {
+    fun providesProcessor(): Processor{
         return Processor()
     }
 
     @Provides
+    fun providesMouse(): Mouse{
+        return Mouse()
+    }
+
+    @Provides
+    fun providesKeyboard(): Keyboard{
+        return Keyboard()
+    }
+
+
+    @Provides
     fun provideComputerTower(
+        storage: Storage,
         memory: Memory,
-        processor: Processor,
-        storage: Storage
+        processor: Processor
     ): ComputerTower {
         return ComputerTower(storage, memory, processor)
     }
@@ -50,7 +51,7 @@ class ComputerModule {
         monitor: Monitor,
         computerTower: ComputerTower,
         keyboard: Keyboard,
-        mouse: Mouse,
+        mouse: Mouse
     ): Computer {
         return Computer(monitor, computerTower, keyboard, mouse)
     }
