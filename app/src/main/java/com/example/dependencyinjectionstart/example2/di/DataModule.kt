@@ -1,10 +1,7 @@
 package com.example.dependencyinjectionstart.example2.di
 
 import android.content.Context
-import com.example.dependencyinjectionstart.example2.data.datasource.ExampleLocalDataSource
-import com.example.dependencyinjectionstart.example2.data.datasource.ExampleLocalDataSourceImpl
-import com.example.dependencyinjectionstart.example2.data.datasource.ExampleRemoteDataSource
-import com.example.dependencyinjectionstart.example2.data.datasource.ExampleRemoteDataSourceImpl
+import com.example.dependencyinjectionstart.example2.data.datasource.*
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -16,8 +13,14 @@ interface DataModule {
     @Binds
     fun bindLocalDataSource(impl: ExampleLocalDataSourceImpl): ExampleLocalDataSource
 
+    @ProdQualifier
     @ApplicationScope
     @Binds
     fun bindRemoteDataSource(impl: ExampleRemoteDataSourceImpl): ExampleRemoteDataSource
+
+    @TestQualifier
+    @ApplicationScope
+    @Binds
+    fun bindTestRemoteDataSource(impl: TestRemoteDataSourceImpl): ExampleRemoteDataSource
 
 }
